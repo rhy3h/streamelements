@@ -1,5 +1,6 @@
 .vscode/
-migrations/
+*.pkl
+*.exe
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
