@@ -1,0 +1,4 @@
+PyQt5==5.15.4
+selenium==3.141.0
+chromedriver_autoinstaller==0.2.2
+websockets==9.1

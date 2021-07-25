@@ -1,6 +1,7 @@
 .vscode/
-*.pkl
 *.exe
+.idea
+*.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
