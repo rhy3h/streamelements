@@ -8,13 +8,17 @@ class SeleniumDriver:
         chrome_options = webdriver.ChromeOptions()
         self.driver = webdriver.Chrome(options=chrome_options)
         self.driver.get('https://www.twitch.tv/directory')
-        try:
-            # add token for given websites
-            self.driver.add_cookie({'name': 'auth-token', 'value': authToken})
-            self.driver.refresh()
-        except Exception as e:
-            # it'll fail for the first time, when cookie file is not present
-            print(e)
+        if authToken != '':
+            try:
+                # add token for given websites
+                self.driver.add_cookie({
+                    'name': 'auth-token',
+                    'value': authToken
+                })
+                self.driver.refresh()
+            except Exception as e:
+                # it'll fail for the first time, when cookie file is not present
+                print(e)
 
     def get_cookies(self):
         # backup this cookie for next time login use

@@ -1,3 +1,4 @@
+import os
 import sys
 import json
 import asyncio
@@ -31,8 +32,14 @@ class Controller:
 
     def __init__(self):
         # load config json
-        with open(Controller.config_path, 'r', encoding='utf-8') as config:
-            self.config = json.load(config)
+        if os.path.exists(Controller.config_path):
+            with open(Controller.config_path, 'r', encoding='utf-8') as config:
+                try:
+                    self.config = json.load(config)
+                except:
+                    self.config = {}
+        else:
+            self.config = {}
         # init ui
         self.ui_init()
         # init chatrooms
@@ -72,7 +79,11 @@ class Controller:
 
     def login(self):
         'Open chromium for login use, change button method and text'
-        self.Selenium = SeleniumDriver(self.config['auth-token'])
+        if 'auth-token' in self.config:
+            token = self.config['auth-token']
+        else:
+            token = ''
+        self.Selenium = SeleniumDriver(token)
         self.ui.loginBtn.clicked.disconnect(self.login)
         self.ui.loginBtn.clicked.connect(self.saveCookie)
         self.ui.loginBtn.setText("保存cookie")
@@ -115,16 +126,19 @@ class Controller:
 
     def afk(self):
         'Afk chatroom method'
-        self.chatrooms = []
-        self.loop = asyncio.get_event_loop()
-        for i in range(self.listModel.rowCount()):
-            item = self.listModel.item(i, 0)
-            room = Chatroom(self.config['auth-token'], self.config['nickname'],
-                            item.text())
-            room.afk_task = self.loop.create_task(room.connect_chatroom())
-            self.chatrooms.append(room)
-        self.thread = threading.Thread(target=self.loop.run_forever)
-        self.thread.start()
+        if ('nickname' in self.config) and ('auth-token' in self.config):
+            self.chatrooms = []
+            self.loop = asyncio.get_event_loop()
+            for i in range(self.listModel.rowCount()):
+                item = self.listModel.item(i, 0)
+                room = Chatroom(self.config['auth-token'],
+                                self.config['nickname'], item.text())
+                room.afk_task = self.loop.create_task(room.connect_chatroom())
+                self.chatrooms.append(room)
+            self.thread = threading.Thread(target=self.loop.run_forever)
+            self.thread.start()
+        else:
+            QMessageBox.warning(self.window, "警告", "未登入twitch")
 
     def saveConfig(self):
         'Save all config to config.json'
