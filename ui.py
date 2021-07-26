@@ -28,16 +28,14 @@ class Ui_MainWindow(object):
         self.addBtn.setGeometry(QtCore.QRect(10, 340, 100, 30))
         self.addBtn.setObjectName("addBtn")
         self.watchBtn = QtWidgets.QPushButton(self.centralwidget)
-        self.watchBtn.setGeometry(QtCore.QRect(120, 370, 100, 30))
+        self.watchBtn.setGeometry(QtCore.QRect(10, 370, 211, 30))
         self.watchBtn.setObjectName("watchBtn")
         self.delBtn = QtWidgets.QPushButton(self.centralwidget)
         self.delBtn.setGeometry(QtCore.QRect(120, 340, 100, 30))
         self.delBtn.setObjectName("delBtn")
-        self.saveListBtn = QtWidgets.QPushButton(self.centralwidget)
-        self.saveListBtn.setGeometry(QtCore.QRect(10, 370, 100, 30))
-        self.saveListBtn.setObjectName("saveListBtn")
         self.channelListView = QtWidgets.QListView(self.centralwidget)
         self.channelListView.setGeometry(QtCore.QRect(10, 50, 210, 280))
+        self.channelListView.setSelectionMode(QtWidgets.QAbstractItemView.MultiSelection)
         self.channelListView.setObjectName("channelListView")
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -48,10 +46,9 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Main"))
         self.loginBtn.setText(_translate("MainWindow", " 登入"))
-        self.addBtn.setText(_translate("MainWindow", "新增直播"))
+        self.addBtn.setText(_translate("MainWindow", "新增頻道"))
         self.watchBtn.setText(_translate("MainWindow", "開始掛台"))
-        self.delBtn.setText(_translate("MainWindow", "刪除勾選"))
-        self.saveListBtn.setText(_translate("MainWindow", "儲存清單"))
+        self.delBtn.setText(_translate("MainWindow", "刪除反白"))
 
 
 if __name__ == "__main__":

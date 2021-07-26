@@ -61,15 +61,15 @@
      </rect>
     </property>
     <property name="text">
-     <string>新增直播</string>
+     <string>新增頻道</string>
     </property>
    </widget>
    <widget class="QPushButton" name="watchBtn">
     <property name="geometry">
      <rect>
-      <x>120</x>
+      <x>10</x>
       <y>370</y>
-      <width>100</width>
+      <width>211</width>
       <height>30</height>
      </rect>
     </property>
@@ -87,20 +87,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>刪除勾選</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="saveListBtn">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>370</y>
-      <width>100</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>儲存清單</string>
+     <string>刪除反白</string>
     </property>
    </widget>
    <widget class="QListView" name="channelListView">
@@ -111,6 +98,9 @@
       <width>210</width>
       <height>280</height>
      </rect>
+    </property>
+    <property name="selectionMode">
+     <enum>QAbstractItemView::MultiSelection</enum>
     </property>
    </widget>
   </widget>
